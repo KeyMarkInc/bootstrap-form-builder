@@ -14,7 +14,10 @@
 	.droppable-active { background-color: #ffe !important; }
 	.tools a { cursor: pointer; font-size: 80%; }
 	.form-body .col-md-6, .form-body .col-md-12 { min-height: 400px; }
-	.draggable { cursor: move; z-index:99999; input, button {pointer-events:none; z-index:100;} }
+	.draggable { cursor: move; }
+	.draggable > input button {pointer-events:none;} 
+			
+	}
 	</style>
 	<script>
 	$(document).ready(function() {

@@ -15,6 +15,7 @@
 	.tools a { cursor: pointer; font-size: 80%; }
 	.form-body .col-md-6, .form-body .col-md-12 { min-height: 400px; }
 	.draggable { cursor: move; }
+	.draggable:hover {background:lightblue;}
 	.draggable label { cursor: move; }
 	.dropped input, select, button {pointer-events:auto !important;} 
 
@@ -228,7 +229,7 @@
 						</div>
 					</div>
 					<div class="form-group draggable">
-						label class="col-sm-2 control-label">Email</label>
+						<label class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-10">
 					      		<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
 					    	</div>
@@ -242,8 +243,9 @@
       							</div>
     						</div>
   					</div>
-					<div class="form-group draggable" style="padding-right: 20px;">
-						<button type="submit" class="btn btn-default" >Submit</button>
+					<div class="form-group draggable">
+						<div class="col-sm-offset-2 col-sm-10">
+						<button type="" class="btn btn-default" >Button</button>
 					</div>
 				</form>
 			</div>

@@ -3,6 +3,8 @@
 - Drag and Drop Elements and get HTML.
 - Support single / 2 column layouts.
 - Edit html on individual elements.
+- horizontal form
+- tested with laravel macro html form elements
 
 ### Use It Now:
 

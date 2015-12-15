@@ -1,0 +1,11 @@
+body {	background-color: #ddd;	}
+.form-elements{padding: 0px 30px 30px 30px; background-color: #fff;}
+.drop-zone{padding: 30px;}
+.droppable-active { background-color: #ffe !important; }
+.tools a { cursor: pointer; font-size: 80%; }
+.form-body .col-md-6, .form-body .col-md-12 { min-height: 400px; }
+.draggable { cursor: move; }
+.draggable:hover {background-color: #d9edf7; border-radius: 5px;}
+.draggable label { cursor: move; }
+.dropped input, .dropped select, .dropped button {pointer-events:auto !important;}
+.draggable div input, .draggable div select, .draggable div button {pointer-events:none;}

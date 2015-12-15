@@ -7,7 +7,7 @@ $(document).ready(function() {
         $.each(["draggable", "droppable", "sortable", "dropped",
             "ui-sortable", "ui-draggable", "ui-droppable", "form-body"], function(i, c) {
             $copy.find("." + c).removeClass(c);
-        })
+        });
         var html = html_beautify($copy.html());
         $copy.remove();
 

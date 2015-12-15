@@ -3,7 +3,7 @@ body {	background-color: #ddd;	}
 .drop-zone{padding: 30px;}
 .droppable-active { background-color: #ffe !important; }
 .tools a { cursor: pointer; font-size: 80%; }
-.form-body .col-md-6, .form-body .col-md-12 { min-height: 400px; }
+.form-body>.col-md-12 { min-height: 400px; }
 .draggable { cursor: move; }
 .draggable:hover {background-color: #d9edf7; border-radius: 5px;}
 .draggable label { cursor: move; }

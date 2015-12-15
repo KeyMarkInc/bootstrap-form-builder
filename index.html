@@ -20,12 +20,6 @@
 		<a class="navbar-brand" href="#">Bootstrap 3 Form Builder</a>
 	</div>
 	<form class="navbar-form navbar-left">
-		<div class="form-group">
-			<select class="form-control" id="n-columns">
-				<option value="1">1 Column</option>
-				<option value="2">2 Columns</option>
-			</select>
-		</div>
 		<button type="submit" class="btn btn-primary" data-clipboard-text = "testing"
 				id="copy-to-clipboard">Copy HTML</button>
 	</form>
@@ -35,56 +29,217 @@
 		<div class="form-elements col-md-3">
 			<h3>Elements</h3>
 			<form class="form" role="form">
-				<div class="form-group draggable">
-					<label class="control-label">Text Input</label>
-					<input type="text" class="form-control" id="input-id-1" placeholder="This is placeholder text">
-					<div class="help-block">Example block-level help text here.</div>
-				</div>
-				<div class="form-group draggable">
-					<label class="control-label" >Password</label>
-					<input type="password" class="form-control" id="input-password-1" placeholder="Password">
-					<div class="help-block">Example block-level help text here.</div>
-				</div>
-				<div class="form-group draggable">
-					<label class="control-label">Select</label>
-
-					<select class="form-control" id="select-1">
-						<option value="Option 1">Option 1</option>
-						<option value="Option 2">Option 2</option>
-						<option value="Option 3">Option 3</option>
-					</select>
-					<div class="help-block">Example block-level help text here.</div>
-				</div>
-
-				<div class="form-group draggable">
-					<label class="control-label" >File input</label>
-
-					<input type="file" id="input-file-1">
-					<div class="help-block">Example block-level help text here.</div>
-				</div>
-				<div class="form-group draggable">
-					<label class="control-label">Button Group</label>
-
-					<div class="btn-group">
-						<button type="button" class="btn btn-default">Left</button>
-						<button type="button" class="btn btn-default">Middle</button>
-						<button type="button" class="btn btn-default">Right</button>
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingTitles">
+							<h4 class="panel-title">
+								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTitles" aria-expanded="true" aria-controls="collapseTitles">
+									Title and text
+								</a>
+							</h4>
+						</div>
+						<div id="collapseTitles" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTitles">
+							<div class="panel-body">
+								<div class="draggable">
+									<h1>Form Title</h1>
+								</div>
+								<div class="draggable">
+									<p>Some static text.</p>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="form-group draggable">
-					<label class="control-label">Email</label>
-					<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-				</div>
-				<div class="form-group draggable">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Check me!
-						</label>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingTextInputs">
+							<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTextInputs" aria-expanded="false" aria-controls="collapseTextInputs">
+									Text Inputs
+								</a>
+							</h4>
+						</div>
+						<div id="collapseTextInputs" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTextInputs">
+							<div class="panel-body">
+								<div class="form-group draggable">
+									<label class="control-label">Text Input</label>
+									<input type="text" class="form-control" id="input-id-1" placeholder="This is placeholder text">
+									<div class="help-block">Example block-level help text here.</div>
+								</div>
+								<div class="form-group draggable">
+									<label class="control-label" >Password</label>
+									<input type="password" class="form-control" id="input-password-1" placeholder="Password">
+									<div class="help-block">Example block-level help text here.</div>
+								</div>
+
+								<div class="form-group draggable">
+									<label class="control-label">Email</label>
+									<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+								</div>
+							</div>
+						</div>
 					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingCheckboxes">
+							<h4 class="panel-title">
+								<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseCheckboxes" aria-expanded="true" aria-controls="collapseCheckboxes">
+									Checkboxes and Radio Buttons
+								</a>
+							</h4>
+						</div>
+						<div id="collapseCheckboxes" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCheckboxes">
+							<div class="panel-body">
+								<div class="draggable form-group">
+									<div class="checkbox" id="options-checkboxes-1">
+										<label>
+											<input type="checkbox" value="">
+											Option one is this and that&mdash;be sure to include why it's great
+										</label>
+									</div>
+									<div class="checkbox disabled">
+										<label>
+											<input type="checkbox" value="" disabled>
+											Option two is disabled
+										</label>
+									</div>
+								</div>
+								<div class="draggable form-group">
+									<div class="radio" id="options-radios-1">
+										<label>
+											<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+											Option one is this and that&mdash;be sure to include why it's great
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+											Option two can be something else and selecting it will deselect option one
+										</label>
+									</div>
+									<div class="radio disabled">
+										<label>
+											<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+											Option three is disabled
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingSelects">
+							<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSelects" aria-expanded="false" aria-controls="collapseSelects">
+									Selects
+								</a>
+							</h4>
+						</div>
+						<div id="collapseSelects" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSelects">
+							<div class="panel-body">
+								<div class="form-group draggable">
+									<label class="control-label">Select</label>
+
+									<select class="form-control" id="select-1">
+										<option value="Option 1">Option 1</option>
+										<option value="Option 2">Option 2</option>
+										<option value="Option 3">Option 3</option>
+									</select>
+									<div class="help-block">Example block-level help text here.</div>
+								</div>
+
+								<div class="form-group draggable">
+									<label class="control-label">Select Multiple</label>
+
+									<select multiple class="form-control" id="select-multiple-1">
+										<option value="Option 1">Option 1</option>
+										<option value="Option 2">Option 2</option>
+										<option value="Option 3">Option 3</option>
+									</select>
+									<div class="help-block">Example block-level help text here.</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingButtons">
+							<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseButtons" aria-expanded="false" aria-controls="collapseButtons">
+									Buttons
+								</a>
+							</h4>
+						</div>
+						<div id="collapseButtons" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingButtons">
+							<div class="panel-body">
+								<div class="form-group draggable">
+									<button type="button" class="btn btn-default">Button</button>
+								</div>
+
+								<div class="form-group draggable">
+									<label class="control-label">Button Group</label>
+
+									<div class="btn-group">
+										<button type="button" class="btn btn-default">Left</button>
+										<button type="button" class="btn btn-default">Middle</button>
+										<button type="button" class="btn btn-default">Right</button>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingOther">
+							<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOther" aria-expanded="false" aria-controls="collapseOther">
+									Other
+								</a>
+							</h4>
+						</div>
+						<div id="collapseOther" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOther">
+							<div class="panel-body">
+								<div class="form-group draggable">
+									<label class="control-label" >File input</label>
+
+									<input type="file" id="input-file-1">
+									<div class="help-block">Example block-level help text here.</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingFimCustom">
+							<h4 class="panel-title">
+								<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFimCustom" aria-expanded="false" aria-controls="collapseFimCustom">
+									Forms InMotion Custom Elements
+								</a>
+							</h4>
+						</div>
+						<div id="collapseFimCustom" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFimCustom">
+							<div class="panel-body">
+								<div class="form-group draggable">
+									<button type="button" class="btn btn-default" data-attach="">Attach</button>
+								</div>
+								<div class="form-group draggable">
+									<button type="button" class="btn btn-default" data-submit="">Submit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
-				<div class="form-group draggable">
-					<button type="button" class="btn btn-default">Button</button>
-				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 			</form>
 		</div>
 		<div class="drop-zone col-md-9">
@@ -93,10 +248,7 @@
 				<div class="text-muted empty-form text-center" style="font-size: 24px;">Drag & Drop elements to build form.</div>
 				<div class="row form-body">
 					<div class="col-md-12 droppable sortable">
-					</div>
-					<div class="col-md-6 droppable sortable" style="display: none;">
-					</div>
-					<div class="col-md-6 droppable sortable" style="display: none;">
+
 					</div>
 				</div>
 			</div>

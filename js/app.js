@@ -1,23 +1,6 @@
 $(document).ready(function() {
     setup_draggable();
 
-    $("#n-columns").on("change", function() {
-        var v = $(this).val();
-        if(v==="1") {
-            var $col = $('.form-body .col-md-12').toggle(true);
-            $('.form-body .col-md-6 .draggable').each(function(i, el) {
-                $(this).remove().appendTo($col);
-            })
-            $('.form-body .col-md-6').toggle(false);
-        } else {
-            var $col = $('.form-body .col-md-6').toggle(true);
-            $(".form-body .col-md-12 .draggable").each(function(i, el) {
-                $(this).remove().appendTo(i % 2 ? $col[1] : $col[0]);
-            });
-            $('.form-body .col-md-12').toggle(false);
-        }
-    });
-
     $("#copy-to-clipboard").on("click", function() {
         var $copy = $(".form-body").parent().clone().appendTo(document.body);
         $copy.find(".tools, :hidden").remove();

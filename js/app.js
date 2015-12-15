@@ -9,13 +9,28 @@ $(document).ready(function() {
             $copy.find("." + c).removeClass(c);
         });
         var html = html_beautify($copy.html());
-        $copy.remove();
 
         $modal = get_modal(html).modal("show");
+        //$modal.find(".btn").html("Download HTML"); todo: implement file download
         $modal.find(".btn").remove();
         $modal.find(".modal-title").html("Copy HTML");
         $modal.find(":input:first").select().focus();
+        $('#modalButton').click(function(){
+            var textFile = null;
+            var data = new Blob([html], {type: 'text/plain'});
 
+            // If we are replacing a previously generated file we need to
+            // manually revoke the object URL to avoid memory leaks.
+            if (textFile !== null) {
+                window.URL.revokeObjectURL(textFile);
+            }
+
+            textFile = window.URL.createObjectURL(data);
+
+            return textFile;
+        });
+
+        $copy.remove();
         return false;
     })
 });
@@ -69,7 +84,7 @@ var setup_draggable = function() {
 }
 
 var get_modal = function(content) {
-    var modal = $('<div class="modal" style="overflow: auto;" tabindex="-1">\
+    var modal = $('<div class="modal" style="overflow: auto;" tabindex="-1" id="">\
 			<div class="modal-dialog">\
 				<div class="modal-content">\
 					<div class="modal-header">\
@@ -81,7 +96,7 @@ var get_modal = function(content) {
 						<textarea class="form-control" \
 							style="min-height: 200px; margin-bottom: 10px;\
 							font-family: Monaco, Fixed">'+content+'</textarea>\
-						<button class="btn btn-success">Update</button>\
+						<a class="btn btn-success" type="button" id="modalButton">Update</a>\
 					</div>\
 				</div>\
 			</div>\

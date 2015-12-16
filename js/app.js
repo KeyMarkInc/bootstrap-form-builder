@@ -11,23 +11,47 @@ $(document).ready(function() {
         var html = html_beautify($copy.html());
 
         $modal = get_modal(html).modal("show");
-        //$modal.find(".btn").html("Download HTML"); todo: implement file download
-        $modal.find(".btn").remove();
+        $modal.find(".btn").html("Download HTML");
+        //$modal.find(".btn").remove();
         $modal.find(".modal-title").html("Copy HTML");
         $modal.find(":input:first").select().focus();
         $('#modalButton').click(function(){
-            var textFile = null;
+            var a = window.document.createElement('a'); //create new anchor for download
+            var ua = navigator.userAgent.toLowerCase(); //check browser UA to see if it's Safari or Chrome
+            var isSafari = false;
+            if (ua.indexOf('safari') != -1) {
+                if (ua.indexOf('chrome') > -1) {
+                    isSafari = false;
+                } else {
+                    isSafari = true;
+                }
+            }
+
             var data = new Blob([html], {type: 'text/plain'});
 
             // If we are replacing a previously generated file we need to
             // manually revoke the object URL to avoid memory leaks.
-            if (textFile !== null) {
-                window.URL.revokeObjectURL(textFile);
+            if (data !== null) {
+                window.URL.revokeObjectURL(data);
             }
-
-            textFile = window.URL.createObjectURL(data);
-
-            return textFile;
+            a.href = window.URL.createObjectURL(new Blob([data], {type: 'text/html'}));
+            if (isSafari) {
+                window.open(a.href, 'result.html', 'toolbars=0,width=400,height=320,left=200,top=200,scrollbars=1,resizable=1');
+            }else{
+                a.download = "result.html";
+            }
+            document.body.appendChild(a);
+            try {
+                if (isSafari) {
+                    window.open(a.href,'result.html', 'toolbars=0,width=600,height=600,left=200,top=200,scrollbars=1,resizable=1');
+                }else{
+                    a.click();
+                }
+            }
+            catch (e){
+                console.log('There was an error generating the file.')
+            }
+            document.body.removeChild(a);
         });
 
         $copy.remove();
@@ -84,7 +108,9 @@ var setup_draggable = function() {
 }
 
 var get_modal = function(content) {
-    var modal = $('<div class="modal" style="overflow: auto;" tabindex="-1" id="">\
+    $('#myModal').remove();
+    delete $('#myModal');
+    var modal = $('<div class="modal" style="overflow: auto;" tabindex="-1" id="myModal">\
 			<div class="modal-dialog">\
 				<div class="modal-content">\
 					<div class="modal-header">\

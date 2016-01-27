@@ -1,7 +1,7 @@
 ### Form Builder for Bootstrap 3
 
 - Drag and Drop Elements and get HTML.
-- Support single / 2 column layouts.
+- Support single column layout.
 - Edit html on individual elements.
 - Includes specific APIs for [Forms InMotion](http://www.formsinmotion.com)
 --Attach

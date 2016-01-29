@@ -134,7 +134,7 @@ var get_modal = function(content) {
 						<h4 class="modal-title">Edit HTML</h4>\
 					</div>\
 					<div class="modal-body ui-front">\
-						<textarea class="form-control" \
+						<textarea class="form-control" id="codeTextArea"\
 							style="min-height: 200px; margin-bottom: 10px;\
 							font-family: Monaco, Fixed">'+content+'</textarea>\
 						<a class="btn btn-success" type="button" id="modalButton">Update</a>\
@@ -142,7 +142,6 @@ var get_modal = function(content) {
 				</div>\
 			</div>\
 			</div>').appendTo(document.body);
-
     return modal;
 };
 
@@ -153,8 +152,19 @@ $(document).on("click", ".edit-link", function(ev) {
     var $edit_btn = $el_copy.find(".edit-link").parent().remove();
 
     var $modal = get_modal(html_beautify($el_copy.html())).modal("show");
+    var myCodeMirror = CodeMirror.fromTextArea(codeTextArea, {
+        mode: "htmlmixed",
+        lineNumbers: true,
+        lineWrapping: true,
+        extraKeys: {"Ctrl-Space": "autocomplete"},
+        foldGutter: {
+            rangeFinder: new CodeMirror.fold.combine(CodeMirror.fold.brace, CodeMirror.fold.comment)
+        },
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+    });
     $modal.find(":input:first").focus();
     $modal.find(".btn-success").click(function(ev2) {
+        myCodeMirror.toTextArea();
         var html = $modal.find("textarea").val();
         if(!html) {
             $el.remove();

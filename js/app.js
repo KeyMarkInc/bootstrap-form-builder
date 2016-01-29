@@ -2,13 +2,28 @@ $(document).ready(function() {
     setup_draggable();
 
     $("#copy-to-clipboard").on("click", function() {
+        var $header = 
+            '<!DOCTYPE html>'
+            +'<head>\n'
+            +'<meta http-equiv="content-type" content="text/html; charset=utf-8">'
+            +'<link rel="stylesheet" type="text/css" href="'
+            + bootstrapcss
+            +'">'
+            +'<title>Forms InMotion</title>'
+            +'<meta name="description" content="Forms InMotion">'
+            +'</head>'
+            +'<body>'
+            +'<div class="container">';
+        var $footer = '</div>'
+            +'</body>'
+            +'</html>';
         var $copy = $(".form-body").parent().clone().appendTo(document.body);
         $copy.find(".tools, :hidden").remove();
         $.each(["draggable", "droppable", "sortable", "dropped",
             "ui-sortable", "ui-draggable", "ui-droppable", "form-body"], function(i, c) {
             $copy.find("." + c).removeClass(c);
         });
-        var html = html_beautify($copy.html());
+        var html = html_beautify($header + $copy.html()+ $footer);
 
         $modal = get_modal(html).modal("show");
         $modal.find(".btn").html("Download HTML");
@@ -155,3 +170,5 @@ $(document).on("click", ".edit-link", function(ev) {
 $(document).on("click", ".remove-link", function(ev) {
     $(this).parent().parent().remove();
 });
+
+var bootstrapcss = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";

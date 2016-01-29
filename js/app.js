@@ -6,15 +6,15 @@ $(document).ready(function() {
             '<!DOCTYPE html>'
             +'<head>\n'
             +'<meta http-equiv="content-type" content="text/html; charset=utf-8">'
-            +'<link rel="stylesheet" type="text/css" href="'
-            + bootstrapcss
-            +'">'
+            +'<link rel="stylesheet" type="text/css" href="' + bootstrapcss + '">'
             +'<title>Forms InMotion</title>'
             +'<meta name="description" content="Forms InMotion">'
             +'</head>'
             +'<body>'
-            +'<div class="container">';
+            +'<div class="container" id="form">';
         var $footer = '</div>'
+            +'<script type="text/javascript" href="'+ parsleyjs + '"></script>'
+            +'<script type="text/javascript" href="'+ parsleyActivate + '"></script>'
             +'</body>'
             +'</html>';
         var $copy = $(".form-body").parent().clone().appendTo(document.body);
@@ -172,3 +172,5 @@ $(document).on("click", ".remove-link", function(ev) {
 });
 
 var bootstrapcss = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+var parsleyjs = '//raw.githubusercontent.com/guillaumepotier/Parsley.js/master/dist/parsley.min.js';
+var parsleyActivate = '<script type="text/javascript">$(function () {$("#form").parsley().on("field:validated", function() {var ok = $(".parsley-error").length === 0;$(".bs-callout-info").toggleClass("hidden", !ok);$(".bs-callout-warning").toggleClass("hidden", ok);}).on("form:submit", function() {return false; // Don"t submit form});});</script>';

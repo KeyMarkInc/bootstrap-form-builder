@@ -20,7 +20,7 @@ $(document).ready(function() {
             +'</body>'
             +'</html>';
         var $copy = $(".form-body").parent().clone().appendTo(document.body);
-        $copy.find(".tools, :hidden").remove();
+        $copy.find(".tools").remove();
         $.each(["draggable", "droppable", "sortable", "dropped",
             "ui-sortable", "ui-draggable", "ui-droppable", "form-body"], function(i, c) {
             $copy.find("." + c).removeClass(c);
@@ -44,7 +44,7 @@ $(document).ready(function() {
                 }
             }
 
-            var data = new Blob([html], {type: 'text/plain'});
+            var data = new Blob([html], {type: 'text/html'});
 
             // If we are replacing a previously generated file we need to
             // manually revoke the object URL to avoid memory leaks.
@@ -187,4 +187,4 @@ var bootstrapcss = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.
 var jqueryjs = '//code.jquery.com/jquery-2.2.0.min.js';
 var jqueryuijs = '//code.jquery.com/ui/1.11.4/jquery-ui.min.js';
 var parsleyjs = '//raw.githubusercontent.com/guillaumepotier/Parsley.js/master/dist/parsley.min.js';
-var parsleyActivate = '$(function () {$("#form").parsley().on("field:validated", function() {var ok = $(".parsley-error").length === 0;$(".bs-callout-info").toggleClass("hidden", !ok);$(".bs-callout-warning").toggleClass("hidden", ok);}).on("form:submit", function() {return false;});});';
+var parsleyActivate = '$(document).ready(function() {$("#form").parsley().on("field:validated", function() {var ok = $(".parsley-error").length === 0;$(".bs-callout-info").toggleClass("hidden", !ok);$(".bs-callout-warning").toggleClass("hidden", ok);}).on("form:submit", function() {return false;});});';

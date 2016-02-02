@@ -2,6 +2,17 @@ body {	background-color: #ddd;	}
 .form-elements{padding: 0px 30px 30px 30px; background-color: #fff;}
 .drop-zone{padding: 30px;}
 .droppable-active { background-color: #ffe !important; }
+.tools {
+    list-style: none outside none;
+    position: absolute;
+    bottom: -15px;
+    right: 10px;
+    z-index: 10;
+}
+.tools li {
+    display: inline-block;
+    margin-left:10px;
+}
 .tools a { cursor: pointer; font-size: 80%; }
 .form-body>.col-md-12 { min-height: 400px; }
 .draggable { cursor: move; }

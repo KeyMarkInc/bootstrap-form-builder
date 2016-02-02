@@ -92,7 +92,7 @@ var setup_draggable = function() {
                 var $el = $orig
                     .clone()
                     .addClass("dropped")
-                    .css({"position": "static", "left": null, "right": null})
+                    .css({"position": "relative", "left": null, "right": null})
                     .appendTo(this);
 
                 // update id
@@ -107,9 +107,11 @@ var setup_draggable = function() {
                 }
 
                 // tools
-                $('<p class="tools">\
-						<a class="edit-link">Edit HTML<a> | \
-						<a class="remove-link">Remove</a></p>').appendTo($el);
+                var tools = '<ul class="tools">\
+						<li><a class="edit-link">Edit HTML<a></li>\
+						<li><a class="remove-link">Remove</a></li>\
+						</ul>';
+                    $(tools).appendTo($el);
             } else {
                 if($(this)[0]!=$orig.parent()[0]) {
                     var $el = $orig
@@ -122,7 +124,7 @@ var setup_draggable = function() {
         }
     }).sortable();
 
-}
+};
 
 var get_modal = function(content) {
     $('#myModal').remove();
@@ -148,10 +150,10 @@ var get_modal = function(content) {
 };
 
 $(document).on("click", ".edit-link", function(ev) {
-    var $el = $(this).parent().parent();
+    var $el = $(this).parent().parent().parent();
     var $el_copy = $el.clone();
 
-    var $edit_btn = $el_copy.find(".edit-link").parent().remove();
+    var $edit_btn = $el_copy.find(".edit-link").parent().parent().remove();
 
     var $modal = get_modal(html_beautify($el_copy.html())).modal("show");
     var myCodeMirror = CodeMirror.fromTextArea(codeTextArea, {
@@ -180,7 +182,11 @@ $(document).on("click", ".edit-link", function(ev) {
 });
 
 $(document).on("click", ".remove-link", function(ev) {
-    $(this).parent().parent().remove();
+    $(this).parent().parent().parent().remove();
+});
+
+$(document).on("click", ".make-required", function(ev) {
+    console.log("Make Required")
 });
 
 var bootstrapcss = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";

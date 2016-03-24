@@ -13,17 +13,19 @@ $(document).ready(function() {
             +'<body>'
             +'<div class="container" id="form">';
         var $footer = '</div>'
+            +'<script type="text/javascript" href="'+ jqueryjs + '"></script>'
+            +'<script type="text/javascript" href="'+ jqueryuijs + '"></script>'
             +'<script type="text/javascript" href="'+ parsleyjs + '"></script>'
-            +'<script type="text/javascript" href="'+ parsleyActivate + '"></script>'
+            +'<script type="text/javascript">'+ parsleyActivate + '</script>'
             +'</body>'
             +'</html>';
         var $copy = $(".form-body").parent().clone().appendTo(document.body);
-        $copy.find(".tools, :hidden").remove();
+        $copy.find(".tools").remove();
         $.each(["draggable", "droppable", "sortable", "dropped",
             "ui-sortable", "ui-draggable", "ui-droppable", "form-body"], function(i, c) {
             $copy.find("." + c).removeClass(c);
         });
-        var html = html_beautify($header + $copy.html()+ $footer);
+        var html = html_beautify($header + $copy.html() + $footer);
 
         $modal = get_modal(html).modal("show");
         $modal.find(".btn").html("Download HTML");
@@ -42,7 +44,7 @@ $(document).ready(function() {
                 }
             }
 
-            var data = new Blob([html], {type: 'text/plain'});
+            var data = new Blob([html], {type: 'text/html'});
 
             // If we are replacing a previously generated file we need to
             // manually revoke the object URL to avoid memory leaks.
@@ -90,7 +92,7 @@ var setup_draggable = function() {
                 var $el = $orig
                     .clone()
                     .addClass("dropped")
-                    .css({"position": "static", "left": null, "right": null})
+                    .css({"position": "relative", "left": null, "right": null})
                     .appendTo(this);
 
                 // update id
@@ -105,9 +107,11 @@ var setup_draggable = function() {
                 }
 
                 // tools
-                $('<p class="tools">\
-						<a class="edit-link">Edit HTML<a> | \
-						<a class="remove-link">Remove</a></p>').appendTo($el);
+                var tools = '<ul class="tools">\
+						<li><a class="edit-link">Edit HTML<a></li>\
+						<li><a class="remove-link">Remove</a></li>\
+						</ul>';
+                    $(tools).appendTo($el);
             } else {
                 if($(this)[0]!=$orig.parent()[0]) {
                     var $el = $orig
@@ -120,7 +124,7 @@ var setup_draggable = function() {
         }
     }).sortable();
 
-}
+};
 
 var get_modal = function(content) {
     $('#myModal').remove();
@@ -146,10 +150,10 @@ var get_modal = function(content) {
 };
 
 $(document).on("click", ".edit-link", function(ev) {
-    var $el = $(this).parent().parent();
+    var $el = $(this).parent().parent().parent();
     var $el_copy = $el.clone();
 
-    var $edit_btn = $el_copy.find(".edit-link").parent().remove();
+    var $edit_btn = $el_copy.find(".edit-link").parent().parent().remove();
 
     var $modal = get_modal(html_beautify($el_copy.html())).modal("show");
     var myCodeMirror = CodeMirror.fromTextArea(codeTextArea, {
@@ -178,9 +182,15 @@ $(document).on("click", ".edit-link", function(ev) {
 });
 
 $(document).on("click", ".remove-link", function(ev) {
-    $(this).parent().parent().remove();
+    $(this).parent().parent().parent().remove();
+});
+
+$(document).on("click", ".make-required", function(ev) {
+    console.log("Make Required")
 });
 
 var bootstrapcss = "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
+var jqueryjs = '//code.jquery.com/jquery-2.2.0.min.js';
+var jqueryuijs = '//code.jquery.com/ui/1.11.4/jquery-ui.min.js';
 var parsleyjs = '//raw.githubusercontent.com/guillaumepotier/Parsley.js/master/dist/parsley.min.js';
-var parsleyActivate = '<script type="text/javascript">$(function () {$("#form").parsley().on("field:validated", function() {var ok = $(".parsley-error").length === 0;$(".bs-callout-info").toggleClass("hidden", !ok);$(".bs-callout-warning").toggleClass("hidden", ok);}).on("form:submit", function() {return false; // Don"t submit form});});</script>';
+var parsleyActivate = '$(document).ready(function() {$("#form").parsley().on("field:validated", function() {var ok = $(".parsley-error").length === 0;$(".bs-callout-info").toggleClass("hidden", !ok);$(".bs-callout-warning").toggleClass("hidden", ok);}).on("form:submit", function() {return false;});});';
